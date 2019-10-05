@@ -4,6 +4,7 @@
 // Lista svih aktivnih radionica
 // Brisanje komentara
 // Profili
+// mozda pozivanje apija za neki gif na startu?
 
 var database = firebase.database();
 
