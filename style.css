@@ -1,0 +1,28 @@
+.unesi-radionicu{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.unesi-radionicu h2{
+    font-size: 48px;
+}
+
+.unesi-radionicu input{
+    padding: 10px 5px;
+    height: 50px;
+    font-size: 32px;
+}
+
+.unesi-radionicu button{
+    background: black;
+    margin-top: 15px;
+    color: white;
+    padding: 20px;
+    font-size: 24px;
+    border: none;
+    cursor: pointer;
+}
