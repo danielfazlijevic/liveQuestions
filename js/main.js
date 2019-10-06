@@ -12,9 +12,10 @@ const questionForm = document.querySelector('.question-form');
 const sendBtn = document.querySelector('#posalji');
 const questionList = document.querySelector('.pitanja ul');
 
+/* KONSTANTE */
 // vreme izmedju slanja poruka u milisekundama
 const MESSAGE_TIMEOUT = 6000; // 6 sekundi
-
+const MIN_LENGTH = 5;
 
 let radionica;
 let randomName;
@@ -63,7 +64,7 @@ function sendQuestion(e) {
         console.log('ne mozes jos');
         return alert("Sacekaj malo!");
     }
-    if (question.length < 5)
+    if (question.length < MIN_LENGTH)
         return alert("Poruka mora sadrzati barem 5 slova");
 
     canSendMessage = false;
