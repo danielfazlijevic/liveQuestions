@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <title>S2S comments</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="unesi-radionicu">
         <h2>Unesi sifru radionice za pocetak</h2>
@@ -17,8 +19,10 @@
     <h2>Radionica: <span id="radionica"></span></h2>
     <h2>Ime: <span id="ime"></span></h2>
     <p>Posalji pitanje</p>
-    <input id="pitanje" type="text" placeholder="tvoje pitanje"/>
-    <button id="posalji" type="submit">Posalji</button>
+    <form class="question-form">
+        <input id="pitanje" type="text" placeholder="tvoje pitanje" />
+        <button id="posalji" type="submit">Posalji</button>
+    </form>
 
 
     <div class="pitanja">
@@ -34,17 +38,19 @@
     <script>
         // Your web app's Firebase configuration
         var firebaseConfig = {
-          apiKey: "AIzaSyDbO7GJQZrawTo09-BGuKjjvKgvAcCJ0dM",
-          authDomain: "livecom-26f24.firebaseapp.com",
-          databaseURL: "https://livecom-26f24.firebaseio.com",
-          projectId: "livecom-26f24",
-          storageBucket: "",
-          messagingSenderId: "648684178427",
-          appId: "1:648684178427:web:a59a7f962e58a40a16595e"
+            apiKey: "AIzaSyDbO7GJQZrawTo09-BGuKjjvKgvAcCJ0dM",
+            authDomain: "livecom-26f24.firebaseapp.com",
+            databaseURL: "https://livecom-26f24.firebaseio.com",
+            projectId: "livecom-26f24",
+            storageBucket: "",
+            messagingSenderId: "648684178427",
+            appId: "1:648684178427:web:a59a7f962e58a40a16595e"
         };
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
-      </script>
+    </script>
+    <script src="https://rawgit.com/leizongmin/js-xss/master/dist/xss.js"></script>
     <script src="js/main.js"></script>
-</body> 
+</body>
+
 </html>

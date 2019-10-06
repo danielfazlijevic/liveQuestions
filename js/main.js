@@ -6,54 +6,71 @@
 // mozda pozivanje apija za neki gif na startu?
 // mozda random ime da se napravi i da se dodeli?
 
-var database = firebase.database();
+const database = firebase.database();
 
-
+const questionForm = document.querySelector('.question-form');
 const sendBtn = document.querySelector('#posalji');
 const questionList = document.querySelector('.pitanja ul');
+
+// vreme izmedju slanja poruka u milisekundama
+const MESSAGE_TIMEOUT = 6000; // 6 sekundi
+
 
 let radionica;
 let randomName;
 
+let canSendMessage = false;
+
 function submitCode() {
-    console.log('test');
     radionica = document.querySelector('#sifra').value;
     localStorage.setItem("radionica", radionica)
     document.querySelector('#radionica').textContent = radionica;
     document.querySelector('.unesi-radionicu').style.display = "none";
 
-
     startListening();
-
 
 }
 
 function startListening() {
+
+    questionForm.addEventListener('submit', sendQuestion);
+
     const questionsRef = firebase.database().ref(radionica + '/questions');
     questionsRef.on('child_added', function (data) {
-        console.log(data);
         addQuestion(data.val());
     });
 
-}
+    canSendMessage = true;
 
-sendBtn.addEventListener("click", sendQuestion);
+}
 
 
 function addQuestion(data) {
-    const question = data.question;
+    const question = filterXSS(data.question);
     const date = new Date(data.date).toLocaleTimeString('sr');
-    const author = data.author;
-    const newQuestionElement = `<li>${author}: ${question}, ${date}</li>`;
+    const author = filterXSS(data.author);
+    
+    const newQuestionElement = `<li><span class="author">${escapeHTML(author)}</span>: ${escapeHTML(question)}, ${date}</li>`;
     questionList.innerHTML += newQuestionElement;
 }
 
-function sendQuestion() {
-    const question = document.querySelector('#pitanje').value;
+function sendQuestion(e) {
+    console.log(e);
+    e.preventDefault();
+    const question = filterXSS(document.querySelector('#pitanje').value);
     console.log('Pitanje: ', question);
+    if (!canSendMessage) {
+        console.log('ne mozes jos');
+        return alert("Sacekaj malo!");
+    }
+    if (question.length < 5)
+        return alert("Poruka mora sadrzati barem 5 slova");
+
+    canSendMessage = false;
+    sendBtn.disabled = true;
 
     firebase.database().ref(radionica + '/questions').push({
-        author: randomName,
+        author: escapeHTML(randomName),
         question: question,
         date: firebase.database.ServerValue.TIMESTAMP
     }, function (error) {
@@ -62,31 +79,48 @@ function sendQuestion() {
         } else {
             alert("pitanje poslato baki");
             document.querySelector('#pitanje').value = "";
+
         }
     });
+
+    setTimeout(() => {
+        console.log('sad moze');
+        canSendMessage = true;
+        sendBtn.disabled = false;
+
+    }, MESSAGE_TIMEOUT)
 }
 
 
 function generateRandomName() {
     const API_URL = "https://namey.muffinlabs.com/name.json";
     fetch(API_URL, {
-        mode: 'cors',
-        method: "GET",
-        headers: {
-           "Content-Type": "application/json"
-        }
-    }).then(res => res.json()).then(data => {
-        randomName = data[0];
-        document.querySelector('#ime').textContent = randomName;
-    })
-    // link za console error i to 
-    .catch(err => {
-        console.log('ERROR', err)
-       randomName =  "Anon"
-       document.querySelector('#ime').textContent = randomName;
-    });
-    
+            mode: 'cors',
+            method: "GET",
+        }).then(res => res.json()).then(data => {
+            randomName = data[0];
+            document.querySelector('#ime').textContent = randomName;
+        })
+        // link za console error i to 
+        .catch(err => {
+            console.log('ERROR', err)
+            randomName = "Anon"
+            document.querySelector('#ime').textContent = randomName;
+        });
+
 
 }
 
 generateRandomName();
+
+
+
+function escapeHTML(unsafe) {
+    return unsafe
+         .replace(/&/g, "&amp;")
+         .replace(/</g, "&lt;")
+         .replace(/>/g, "&gt;")
+         .replace(/"/g, "&quot;")
+         .replace(/'/g, "&#039;");
+ }
+
