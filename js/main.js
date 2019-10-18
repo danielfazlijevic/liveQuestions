@@ -5,13 +5,13 @@
 // Profili
 // mozda pozivanje apija za neki gif na startu?
 // mozda random ime da se napravi i da se dodeli?
-
+;(function() {
 const database = firebase.database();
 
 const questionForm = document.querySelector('.question-form');
 const sendBtn = document.querySelector('#posalji');
 const questionList = document.querySelector('.pitanja ul');
-
+const submitCodeBtn = document.querySelector('#start');
 /* KONSTANTE */
 // vreme izmedju slanja poruka u milisekundama
 const MESSAGE_TIMEOUT = 6000; // 6 sekundi
@@ -21,6 +21,11 @@ let radionica;
 let randomName;
 
 let canSendMessage = false;
+
+
+// EVENT listener za submit dugme (sifra radionice)
+submitCodeBtn.addEventListener('click', submitCode);
+
 
 function submitCode() {
     radionica = document.querySelector('#sifra').value;
@@ -45,9 +50,6 @@ function startListening() {
 
 }
 
-// database.ref('.info/connected').get()
-// .then((doc)=>console.log('DOC', doc));
-
 
 function addQuestion(data) {
     const question = filterXSS(data.question);
@@ -59,7 +61,7 @@ function addQuestion(data) {
 }
 
 function sendQuestion(e) {
-    console.log(e);
+    // console.log(e);
     e.preventDefault();
     const question = filterXSS(document.querySelector('#pitanje').value);
     console.log('Pitanje: ', question);
@@ -128,3 +130,4 @@ function escapeHTML(unsafe) {
         .replace(/'/g, "&#039;");
 }
 
+})();
