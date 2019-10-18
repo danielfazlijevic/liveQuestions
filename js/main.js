@@ -50,7 +50,7 @@ function addQuestion(data) {
     const question = filterXSS(data.question);
     const date = new Date(data.date).toLocaleTimeString('sr');
     const author = filterXSS(data.author);
-    
+
     const newQuestionElement = `<li><span class="author">${escapeHTML(author)}</span>: ${escapeHTML(question)}, ${date}</li>`;
     questionList.innerHTML += newQuestionElement;
 }
@@ -61,11 +61,11 @@ function sendQuestion(e) {
     const question = filterXSS(document.querySelector('#pitanje').value);
     console.log('Pitanje: ', question);
     if (!canSendMessage) {
-        console.log('ne mozes jos');
-        return alert("Sacekaj malo!");
+        console.log('ne možes još');
+        return alert("Sačekaj malo!");
     }
     if (question.length < MIN_LENGTH)
-        return alert("Poruka mora sadrzati barem 5 slova");
+        return alert("Poruka mora sadržati barem 5 slova");
 
     canSendMessage = false;
     sendBtn.disabled = true;
@@ -76,9 +76,9 @@ function sendQuestion(e) {
         date: firebase.database.ServerValue.TIMESTAMP
     }, function (error) {
         if (error) {
-            alert("Doslo je do greske!")
+            alert("Došlo je do greške!")
         } else {
-            alert("pitanje poslato baki");
+            alert("Pitanje poslato, baki");
             document.querySelector('#pitanje').value = "";
 
         }
@@ -96,12 +96,12 @@ function sendQuestion(e) {
 function generateRandomName() {
     const API_URL = "https://namey.muffinlabs.com/name.json";
     fetch(API_URL, {
-            mode: 'cors',
-            method: "GET",
-        }).then(res => res.json()).then(data => {
-            randomName = data[0];
-            document.querySelector('#ime').textContent = randomName;
-        })
+        mode: 'cors',
+        method: "GET",
+    }).then(res => res.json()).then(data => {
+        randomName = data[0];
+        document.querySelector('#ime').textContent = randomName;
+    })
         // link za console error i to 
         .catch(err => {
             console.log('ERROR', err)
@@ -118,10 +118,10 @@ generateRandomName();
 
 function escapeHTML(unsafe) {
     return unsafe
-         .replace(/&/g, "&amp;")
-         .replace(/</g, "&lt;")
-         .replace(/>/g, "&gt;")
-         .replace(/"/g, "&quot;")
-         .replace(/'/g, "&#039;");
- }
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
 

@@ -7,23 +7,33 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>S2S comments</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="button.css">
 </head>
 
 <body>
     <div class="unesi-radionicu">
-        <h2>Unesi sifru radionice za pocetak</h2>
+        <h2>S2S comments</h2>
+        <h3>Unesi šifru radionice za početak</h3>
         <input type="text" id="sifra" placeholder="sifra radionice">
         <button type="submit" onClick="submitCode()">Startuj</button>
     </div>
-    <h1>S2S komentari</h1>
-    <h2>Radionica: <span id="radionica"></span></h2>
-    <h2>Ime: <span id="ime"></span></h2>
-    <p>Posalji pitanje</p>
-    <form class="question-form">
-        <input id="pitanje" type="text" placeholder="tvoje pitanje" />
-        <button id="posalji" type="submit">Posalji</button>
-    </form>
 
+    <label class="switch">
+        <input type="checkbox">
+        <span class="slider round"></span>
+    </label>
+
+    <h1>S2S komentari 2019</h1>
+    <p class="naslov">WebApp Workshop</p>
+    <h2 class="radionica">Radionica: <span id="radionica"></span></h2>
+    <h2 class="ime">Ime: <span id="ime"></span></h2> <br>
+    <div class="pitanje">
+        <p>Posalji pitanje</p>
+        <form class="question-form">
+            <input id="pitanje" type="text" placeholder="tvoje pitanje" />
+            <button id="posalji" type="submit">Pošalji</button>
+        </form>
+    </div>
 
     <div class="pitanja">
         <ul>

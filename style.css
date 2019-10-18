@@ -1,33 +1,97 @@
-.unesi-radionicu{
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    background: white;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+body {
+  background-color: #02082b;
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  padding: 10px;
 }
 
-.unesi-radionicu h2{
-    font-size: 48px;
+.unesi-radionicu {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background: #02082b;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-.unesi-radionicu input{
-    padding: 10px 5px;
-    height: 50px;
-    font-size: 32px;
+.unesi-radionicu h2 {
+  font-size: 48px;
 }
 
-.unesi-radionicu button{
-    background: black;
-    margin-top: 15px;
-    color: white;
-    padding: 20px;
-    font-size: 24px;
-    border: none;
-    cursor: pointer;
+h1 {
+  text-align: center;
+}
+
+.naslov {
+  color: #ccc;
+  font-size: 14px;
+  text-align: center;
+}
+
+.radionica {
+  float: left;
+}
+
+.ime {
+  float: left;
+  padding-left: 20px;
+}
+
+.radionica,
+.ime {
+  font-size: 18px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#radionica,
+#ime {
+  color: #e72263;
+}
+
+.pitanje {
+  margin-top: 50px;
+}
+
+button {
+  background: #083d75;
+  padding: 10px;
+  border-color: #3ab8de;
+  cursor: pointer;
+  color: white;
+  font-size: 18px;
+  border-radius: 25px;
+}
+
+.unesi-radionicu button {
+  margin-top: 15px;
+}
+
+.unesi-radionicu input {
+  padding: 10px 15px;
+  height: 30px;
+  font-size: 32px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+ul li {
+  margin: 20px 0;
+  font-size: 18px;
+}
+
+input {
+  border-radius: 25px;
+}
+
+.pitanje input {
+  padding: 10px 15px;
+  height: 18px;
+  font-size: 16px;
 }
