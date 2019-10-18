@@ -1,5 +1,6 @@
 body {
   background-color: #02082b;
+  background-image: url("img/pozadina");
   color: white;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   padding: 10px;
@@ -57,10 +58,14 @@ h1 {
   margin-top: 50px;
 }
 
+.pitanja {
+  margin-left: 100px;
+}
+
 button {
   background: #083d75;
   padding: 10px;
-  border-color: #3ab8de;
+  border: 2px solid #3ab8de;
   cursor: pointer;
   color: white;
   font-size: 18px;
@@ -91,7 +96,15 @@ input {
 }
 
 .pitanje input {
-  padding: 10px 15px;
+  padding: 10px 25px;
+  background: none;
+  color: white;
+  border: 2px solid #ccc;
+  width: 200px;
   height: 18px;
   font-size: 16px;
+}
+
+.glavni_deo {
+  margin: 50px;
 }
