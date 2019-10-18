@@ -1,6 +1,5 @@
 body {
   background-color: #02082b;
-  background-image: url("img/pozadina");
   color: white;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   padding: 10px;
@@ -85,12 +84,17 @@ button {
   border-radius: 25px;
 }
 
+button:hover {
+  background: #3ab8de;
+}
+
 .unesi-radionicu button {
   margin-top: 15px;
 }
 
 .unesi-radionicu input {
   padding: 10px 15px;
+  border: 2px solid #ccc;
   height: 30px;
   font-size: 32px;
 }
@@ -124,4 +128,13 @@ input {
 
 .author {
   color: #e72263;
+}
+
+#sifra {
+  font-size: 20px;
+}
+
+a {
+  text-decoration: none;
+  color: white;
 }
