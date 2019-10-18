@@ -1,8 +1,9 @@
 body {
-  background-color: #02082b;
+  background-color: #030e3c;
   color: white;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   padding: 10px;
+  padding-bottom: 150px;
 }
 
 .unesi-radionicu {
@@ -67,7 +68,14 @@ h1 {
 }
 
 .pitanje {
-  margin-top: 50px;
+  padding-top: 10px;
+  padding-left: 50px;
+  padding-bottom: 30px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #020522;
 }
 
 .pitanja {
@@ -117,7 +125,7 @@ input {
   background: none;
   color: white;
   border: 2px solid #ccc;
-  width: 200px;
+  width: 350px;
   height: 18px;
   font-size: 16px;
 }
