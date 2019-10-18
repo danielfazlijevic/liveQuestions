@@ -78,6 +78,10 @@ h1 {
   background-color: #020522;
 }
 
+.pitanje p {
+  color: #ccc;
+}
+
 .pitanja {
   margin-left: 100px;
 }
