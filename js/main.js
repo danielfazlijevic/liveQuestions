@@ -24,7 +24,7 @@ let canSendMessage = false;
 
 function submitCode() {
     radionica = document.querySelector('#sifra').value;
-    localStorage.setItem("radionica", radionica)
+    localStorage.setItem("radionica", radionica);
     document.querySelector('#radionica').textContent = radionica;
     document.querySelector('.unesi-radionicu').style.display = "none";
 
@@ -36,7 +36,7 @@ function startListening() {
 
     questionForm.addEventListener('submit', sendQuestion);
 
-    const questionsRef = firebase.database().ref(radionica + '/questions');
+    const questionsRef = database.ref(radionica + '/questions');
     questionsRef.on('child_added', function (data) {
         addQuestion(data.val());
     });
@@ -44,6 +44,9 @@ function startListening() {
     canSendMessage = true;
 
 }
+
+// database.ref('.info/connected').get()
+// .then((doc)=>console.log('DOC', doc));
 
 
 function addQuestion(data) {
@@ -70,7 +73,7 @@ function sendQuestion(e) {
     canSendMessage = false;
     sendBtn.disabled = true;
 
-    firebase.database().ref(radionica + '/questions').push({
+    database.ref(radionica + '/questions').push({
         author: escapeHTML(randomName),
         question: question,
         date: firebase.database.ServerValue.TIMESTAMP
@@ -89,7 +92,7 @@ function sendQuestion(e) {
         canSendMessage = true;
         sendBtn.disabled = false;
 
-    }, MESSAGE_TIMEOUT)
+    }, MESSAGE_TIMEOUT);
 }
 
 
@@ -104,8 +107,8 @@ function generateRandomName() {
     })
         // link za console error i to 
         .catch(err => {
-            console.log('ERROR', err)
-            randomName = "Anon"
+            console.log('ERROR', err);
+            randomName = "Anon";
             document.querySelector('#ime').textContent = randomName;
         });
 
