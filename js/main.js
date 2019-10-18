@@ -104,7 +104,6 @@ function generateRandomName() {
     }).then(res => res.json()).then(data => {
         randomName = data[0];
         document.querySelector('#ime').textContent = randomName;
-        document.getElementById('#ime').style.color = "#e72263";
     })
         // link za console error i to 
         .catch(err => {

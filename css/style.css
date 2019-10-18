@@ -24,14 +24,27 @@ body {
   font-size: 48px;
 }
 
+.unesi-radionicu img {
+  width: 150px;
+}
+
+img {
+  width: 100px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 h1 {
   text-align: center;
 }
 
 .naslov {
   color: #ccc;
-  font-size: 14px;
+  font-size: 18px;
   text-align: center;
+  padding: 0;
+  margin: 0;
 }
 
 .radionica {
@@ -107,4 +120,8 @@ input {
 
 .glavni_deo {
   margin: 50px;
+}
+
+.author {
+  color: #e72263;
 }
