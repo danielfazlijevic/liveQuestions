@@ -79,9 +79,9 @@ function sendQuestion(e) {
         date: firebase.database.ServerValue.TIMESTAMP
     }, function (error) {
         if (error) {
-            alert("Došlo je do greške!")
+            alert("Došlo je do greške!");
         } else {
-            alert("Pitanje poslato, baki");
+            alert("Poruka je poslata");
             document.querySelector('#pitanje').value = "";
 
         }
