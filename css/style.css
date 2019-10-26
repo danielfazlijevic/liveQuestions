@@ -97,6 +97,7 @@ button {
   transition: 0.5s;
 }
 
+/* selektujemo button koji je disabled */
 button[disabled]{
   border-color: red;
   opacity: 0.7;

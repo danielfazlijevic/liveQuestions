@@ -1,11 +1,8 @@
-// DODATI: 
-// Promena radionice
-// Lista svih aktivnih radionica
-// Brisanje komentara
-// Profili
-// mozda pozivanje apija za neki gif na startu?
-// mozda random ime da se napravi i da se dodeli?
+// wrapujemo nas kod sa IIFE da bi zastitili nas kod i varijable
+// pogledati: https://medium.com/javascript-in-plain-english/https-medium-com-javascript-in-plain-english-stop-feeling-iffy-about-using-an-iife-7b0292aba174 
+// pogledati: https://flaviocopes.com/javascript-iife/
 ;(function() {
+// referenca na bazu firebase
 const database = firebase.database();
 
 const questionForm = document.querySelector('.question-form');
@@ -15,11 +12,13 @@ const submitCodeBtn = document.querySelector('#start');
 /* KONSTANTE */
 // vreme izmedju slanja poruka u milisekundama
 const MESSAGE_TIMEOUT = 6000; // 6 sekundi
+// min duzina poruke
 const MIN_LENGTH = 5;
 
 let radionica;
 let randomName;
 
+// varijabla koja kontrolise da li korisnik moze da salje poruke
 let canSendMessage = false;
 
 
@@ -52,9 +51,12 @@ function startListening() {
 
 
 function addQuestion(data) {
+    // koristimo funkciju filterXSS iz eksterne biblioteke da bi se zastitili od XSS napada
+    // pogledati: https://www.acunetix.com/websitesecurity/cross-site-scripting/
     const question = filterXSS(data.question);
     const date = new Date(data.date).toLocaleTimeString('sr');
     const author = filterXSS(data.author);
+
 
     const newQuestionElement = `<li><span class="author">${escapeHTML(author)}</span>: ${escapeHTML(question)}, ${date}</li>`;
     questionList.innerHTML += newQuestionElement;
@@ -89,6 +91,7 @@ function sendQuestion(e) {
         }
     });
 
+    // posle MESSAGE_TIMEOUT omogucavamo korisniku da salje opet poruke
     setTimeout(() => {
         console.log('sad moze');
         canSendMessage = true;
@@ -97,7 +100,7 @@ function sendQuestion(e) {
     }, MESSAGE_TIMEOUT);
 }
 
-
+// dobijamo random ime koristeci API
 function generateRandomName() {
     const API_URL = "https://namey.muffinlabs.com/name.json";
     fetch(API_URL, {
@@ -120,7 +123,9 @@ function generateRandomName() {
 generateRandomName();
 
 
-
+// funkcija koja koristi regex
+// menjamo znakove u HTML kodove
+// sajt na kojem mozemo videti te kodove: https://www.rapidtables.com/web/html/html-codes.html
 function escapeHTML(unsafe) {
     return unsafe
         .replace(/&/g, "&amp;")
